@@ -69,25 +69,26 @@ def game_state():
 state = game_state()
 x_turn = 1
 
-while state == "Game not finished":
-    x_move = input("Enter the coordinates: ")
+while True:
     win = win_state()
     state = game_state()
-    while state == "Game not finished":
-        print(game_state())
-        print(win_state())
-        check = check_coord(x_move)
-        if check:
-            print(check_coord(x_move))
-            x_move = input("Enter the coordinates: ")
-        elif x_turn == 1:
-            mat[j][i] = "X"
-            print_mat(mat)
-            x_turn = 0
-            break
-        else:
-            mat[j][i] = "O"
-            print_mat(mat)
-            x_turn = 1
-            break
+    if state == "Game not finished":
+        x_move = input("Enter the coordinates: ")
+        while True:
+            check = check_coord(x_move)
+            if check:
+                print(check_coord(x_move))
+                x_move = input("Enter the coordinates: ")
+            elif x_turn == 1:
+                mat[j][i] = "X"
+                print_mat(mat)
+                x_turn = 0
+                break
+            else:
+                mat[j][i] = "O"
+                print_mat(mat)
+                x_turn = 1
+                break
+    else:
+        break
 print(state)
